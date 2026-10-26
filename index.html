@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>HRM Oba Olumide Atanda Osunsina (Òsómẹ̀kùn I) | Official Royal Web Portal</title>
   <meta name="description" content="Official Royal Web Portal of His Royal Majesty, Alayeluwa Oba Olumide Atanda John Osunsina (Òsómẹ̀kùn I), The Olu of Ifo Land, Ogun State, Nigeria.">
   <meta name="keywords" content="Oba Olumide Osunsina, Osomekun I, Olu of Ifo, Ifo Land, Ogun State, Royal Portal, Palace of Ifo">
   <meta property="og:title" content="HRM Oba Olumide Atanda Osunsina (Òsómẹ̀kùn I) | The Olu of Ifo Land">
   <meta property="og:description" content="Official Royal Web Portal of the Olu of Ifo Land, Ogun State, Nigeria.">
-  <meta property="og:image" content="assets/images/royal-crest-gold-silk.png">
+  <meta property="og:image" content="assets/images/royal-crest-gold-transparent.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/images/royal-seal-circular-transparent.png">
@@ -21,7 +21,12 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="parallax-wrapper">
+
+  <!-- Parallel / Parallax Ambient Depth Layers -->
+  <div class="parallax-shape parallax-shape-1" aria-hidden="true"></div>
+  <div class="parallax-shape parallax-shape-2" aria-hidden="true"></div>
+  <div class="parallax-shape parallax-shape-3" aria-hidden="true"></div>
 
   <!-- Progressive Scroll Top Progress Bar -->
   <div class="royal-scroll-progress-container" aria-hidden="true">
@@ -52,18 +57,60 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Dual Theme Toggle (Gold / Navy) -->
-        <button class="theme-switch-btn" id="theme-toggle-btn" title="Toggle between Imperial Gold and Royal Navy editions">
-          <span class="theme-indicator"></span>
-          <span id="theme-label">Imperial Gold</span>
+        <!-- Dark Mode Toggle Button -->
+        <button class="theme-switch-btn" id="dark-mode-toggle" title="Toggle Imperial Dark Mode / Light Mode">
+          <span>🌙</span>
+          <span>Dark Mode</span>
         </button>
 
         <button class="btn-royal-sm trigger-proclamation" id="nav-proclamation-btn">
           Royal Decree
         </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobile-toggle-btn" aria-label="Open mobile navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- ==========================================================================
+       MOBILE NAVIGATION DRAWER
+       ========================================================================== -->
+  <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
+  <aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-header">
+      <div class="brand-wrapper">
+        <img src="assets/images/royal-crest-gold-transparent.png" alt="Royal Crest" class="brand-crest" style="width: 36px; height: 36px;">
+        <div class="brand-text">
+          <h2 style="font-size: 0.95rem; line-height: 1.1;">Oba Olumide Osunsina</h2>
+          <span>Òsómẹ̀kùn I</span>
+        </div>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">&times;</button>
+    </div>
+
+    <ul class="drawer-menu">
+      <li><a href="#hero" class="drawer-link">Home</a></li>
+      <li><a href="#stool" class="drawer-link">The Royal Stool</a></li>
+      <li><a href="#bio" class="drawer-link">Biography & Pedigree</a></li>
+      <li><a href="#vision" class="drawer-link">Vision for Ifo</a></li>
+      <li><a href="#news" class="drawer-link">Palace Press & Media</a></li>
+    </ul>
+
+    <div class="drawer-actions">
+      <button class="theme-switch-btn" id="dark-mode-drawer-btn" style="width: 100%; justify-content: center;">
+        <span>🌙</span>
+        <span>Dark Mode</span>
+      </button>
+      <button class="btn-royal-primary trigger-proclamation" style="width: 100%; justify-content: center;">
+        Royal Decree Proclamation
+      </button>
+    </div>
+  </aside>
 
   <!-- ==========================================================================
        HERO SECTION
@@ -77,13 +124,10 @@
         <span>Official Royal Proclamation • Ogun State, Nigeria</span>
       </div>
 
-      <!-- Central Official Royal Crest with Parallax Tracking -->
+      <!-- Central Official Royal Crest with Parallel Parallax Tracking -->
       <div class="hero-crest-container reveal-scroll-scale">
         <div class="hero-crest-card">
           <img id="hero-crest-img" src="assets/images/royal-crest-gold-transparent.png" alt="Official Royal Coat of Arms - Òsómẹ̀kùn I" class="hero-crest-img">
-        </div>
-        <div class="hero-crest-badge">
-          <span>Olu of Ifoland</span>
         </div>
       </div>
 
@@ -194,20 +238,19 @@
         </div>
         <div class="monarch-spotlight-content">
           <span class="press-tag">Royal Portrait</span>
-          <h3 style="margin-top: 10px;">The Monarch of a New Era</h3>
+          <h3>The Monarch of a New Era</h3>
           <p>
             Dignified, visionary, and deeply committed to his people, His Royal Majesty brings over three decades 
             of visionary corporate governance, master-planned urban architecture, and community empowerment to the ancestral stool of Ifo Land.
           </p>
-          <div class="official-decree-quote" style="margin-bottom: 16px;">
+          <div class="official-decree-quote">
             "A leader’s true legacy is measured by the progress, security, and elevated dignity of his people."
           </div>
-          <p style="font-size: 0.92rem; color: var(--text-muted);">
+          <p class="monarch-spotlight-footnote">
             Enthroned under the regnal title <strong>Òsómẹ̀kùn I</strong> following unanimous selection by the accredited Kingmakers of Ifoland.
           </p>
         </div>
       </div>
-
 
       <!-- Quick Metrics Row -->
       <div class="bio-stats-row reveal-scroll stagger-1">
@@ -325,9 +368,6 @@
     </div>
   </section>
 
-
-
-
   <!-- ==========================================================================
        SECTION 3: THE MONARCH'S 4 PILLARS OF VISION (Feature 4)
        ========================================================================== -->
@@ -436,28 +476,28 @@
 
           <div class="asset-download-list">
             <!-- Asset 1 -->
-            <a href="assets/images/royal-crest-gold-silk.png" download="Oba-Olumide-Osunsina-Crest-Gold.png" class="asset-item">
+            <a href="assets/images/royal-crest-gold-transparent.png" download="Oba-Olumide-Osunsina-Crest-Gold.png" class="asset-item">
               <div class="asset-detail">
                 <span class="asset-ext">PNG</span>
-                <span class="asset-name">Gold Crest (Silk Backdrop)</span>
+                <span class="asset-name">Official Gold Crest (Transparent)</span>
               </div>
               <span class="asset-btn">Download ↓</span>
             </a>
 
             <!-- Asset 2 -->
-            <a href="assets/images/royal-crest-navy-silk.png" download="Oba-Olumide-Osunsina-Crest-Navy.png" class="asset-item">
+            <a href="assets/images/royal-crest-navy-transparent.png" download="Oba-Olumide-Osunsina-Crest-Navy.png" class="asset-item">
               <div class="asset-detail">
                 <span class="asset-ext">PNG</span>
-                <span class="asset-name">Navy Crest (Silk Backdrop)</span>
+                <span class="asset-name">Official Navy Crest (Transparent)</span>
               </div>
               <span class="asset-btn">Download ↓</span>
             </a>
 
             <!-- Asset 3 -->
-            <a href="assets/images/royal-crest-gold-transparent.png" download="Oba-Olumide-Osunsina-Crest-Transparent.png" class="asset-item">
+            <a href="assets/images/real.jpeg" download="Oba-Olumide-Osunsina-Portrait.jpg" class="asset-item">
               <div class="asset-detail">
-                <span class="asset-ext">PNG</span>
-                <span class="asset-name">Gold Crest (Transparent)</span>
+                <span class="asset-ext">JPG</span>
+                <span class="asset-name">Official Photographic Portrait</span>
               </div>
               <span class="asset-btn">Download ↓</span>
             </a>

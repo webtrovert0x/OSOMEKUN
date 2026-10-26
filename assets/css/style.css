@@ -65,6 +65,111 @@ body.theme-navy {
   --shadow-seal: 0 12px 35px rgba(0, 0, 0, 0.12), 0 0 25px rgba(26, 35, 58, 0.2);
 }
 
+/* ==========================================================================
+   IMPERIAL DARK MODE
+   ========================================================================== */
+body.dark-mode {
+  --bg-primary: #0A0C10;
+  --bg-secondary: #12151D;
+  --bg-card: #161B26;
+  --bg-card-hover: #1C2333;
+  --bg-subtle-gold: rgba(212, 175, 55, 0.06);
+  --bg-subtle-border: rgba(212, 175, 55, 0.2);
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-gold: #E5B850;
+  --text-gold-light: #F6D686;
+  
+  --gold-primary: #D4AF37;
+  --gold-secondary: #F3CD6E;
+  --gold-dark: #9E7B1A;
+  --gold-gradient: linear-gradient(135deg, #C59B27 0%, #F5D77F 50%, #B8861B 100%);
+  --gold-border-gradient: linear-gradient(135deg, rgba(212,175,55,0.6), rgba(243,205,110,0.25), rgba(163,126,28,0.5));
+
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.65);
+  --shadow-lg: 0 20px 55px rgba(0, 0, 0, 0.85);
+  --shadow-seal: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.35);
+}
+
+body.dark-mode .royal-header {
+  background: rgba(10, 12, 16, 0.88);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+body.dark-mode .hero-proclamation-tag {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .hero-crest-badge {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+body.dark-mode .btn-royal-outline {
+  background: #12151D;
+  color: #F8FAFC;
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+body.dark-mode .btn-royal-outline:hover {
+  background: #181D2A;
+  border-color: var(--gold-primary);
+}
+
+body.dark-mode .press-featured-card,
+body.dark-mode .media-kit-card,
+body.dark-mode .bio-card,
+body.dark-mode .pillar-card,
+body.dark-mode .bio-stat-card,
+body.dark-mode .monarch-spotlight-wrapper {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+body.dark-mode .bio-card:hover,
+body.dark-mode .pillar-card:hover {
+  background: #161B26;
+  border-color: var(--gold-primary);
+}
+
+body.dark-mode .bio-card-icon,
+body.dark-mode .asset-item {
+  background: #181D2A;
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+body.dark-mode .official-decree-quote {
+  background: #181D2A;
+}
+
+body.dark-mode .stamp-badge,
+body.dark-mode .royal-modal-card {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+body.dark-mode .stamp-scroll-percent {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-secondary);
+}
+
+body.dark-mode .stamp-tooltip {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.3);
+  color: var(--gold-secondary);
+}
+
+body.dark-mode .royal-footer {
+  background: #07090C;
+  border-top-color: rgba(212, 175, 55, 0.18);
+}
+
+
 /* Base Styles */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -395,6 +500,8 @@ a {
   position: relative;
   width: 360px;
   max-width: 88vw;
+  perspective: 1000px;
+  pointer-events: none; /* Never blocks scrolling */
 }
 
 .hero-crest-card {
@@ -404,28 +511,28 @@ a {
   border-radius: 0;
   box-shadow: none;
   border: none;
-  transition: var(--transition-smooth);
   display: flex;
   justify-content: center;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  pointer-events: none;
 }
+
 
 .hero-crest-img {
   width: 100%;
   max-width: 340px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 14px 28px rgba(200, 155, 56, 0.22));
-  transition: transform 0.4s ease, filter 0.4s ease;
+  filter: drop-shadow(0 14px 28px rgba(200, 155, 56, 0.25));
+  transition: filter 0.3s ease;
+  will-change: transform;
 }
 
-body.theme-navy .hero-crest-img {
-  filter: drop-shadow(0 14px 28px rgba(18, 24, 38, 0.18));
+body.dark-mode .hero-crest-img {
+  filter: drop-shadow(0 14px 28px rgba(212, 175, 55, 0.35));
 }
 
-.hero-crest-card:hover .hero-crest-img {
-  transform: scale(1.03);
-  filter: drop-shadow(0 20px 36px rgba(200, 155, 56, 0.32));
-}
 
 .hero-crest-badge {
   position: absolute;
@@ -696,50 +803,85 @@ body.theme-navy .emblem-preview-box img {
   line-height: 1.55;
 }
 
-/* ==========================================================================
-   BIOGRAPHY & ROYAL LEGACY SECTION
-   ========================================================================== */
 .bio-section {
-  padding: 95px 0;
-  background: #FFFFFF;
+  padding: 100px 0;
+  background: var(--bg-primary);
   position: relative;
+  overflow: hidden;
 }
 
-/* Real Monarch Portrait Spotlight */
+/* Giant Background Watermark for Dramatic Parallax Depth */
+.parallax-watermark-bg {
+  position: absolute;
+  top: 15%;
+  right: -150px;
+  width: 700px;
+  height: 700px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+body.dark-mode .parallax-watermark-bg {
+  opacity: 0.06;
+}
+
+/* Monarch Spotlight Card - Left-Side Portrait & Content */
 .monarch-spotlight-wrapper {
   display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 40px;
+  grid-template-columns: 330px 1fr;
+  gap: 52px;
   align-items: center;
-  background: var(--bg-secondary);
+  background: #FFFFFF;
   border: 1px solid var(--bg-subtle-border);
-  border-radius: var(--radius-lg);
-  padding: 36px;
+  border-radius: 24px;
+  padding: 48px;
+  margin-top: 36px;
   margin-bottom: 50px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  position: relative;
 }
 
+body.dark-mode .monarch-spotlight-wrapper {
+  background: #12151D;
+  border-color: rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Left-Side Portrait Frame */
 .monarch-photo-frame {
   position: relative;
-  border-radius: var(--radius-md);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 3px solid #FFFFFF;
-  outline: 1px solid var(--gold-primary);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--gold-primary);
+  outline: 1px solid rgba(200, 155, 56, 0.25);
+  background: #0E121B;
+  width: 100%;
+  max-width: 330px;
+  margin: 0;
+  justify-self: start;
+}
+
+body.dark-mode .monarch-photo-frame {
+  border-color: var(--gold-primary);
+  outline-color: rgba(212, 175, 55, 0.35);
+  background: #090B10;
 }
 
 .monarch-photo-frame img {
   width: 100%;
-  height: 440px;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease;
 }
 
-
 .monarch-photo-frame:hover img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .monarch-photo-badge {
@@ -747,48 +889,106 @@ body.theme-navy .emblem-preview-box img {
   bottom: 12px;
   left: 12px;
   right: 12px;
-  background: rgba(18, 24, 38, 0.85);
+  background: rgba(14, 18, 28, 0.92);
   backdrop-filter: blur(8px);
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  color: #FFFFFF;
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
   text-align: center;
-  border: 1px solid rgba(200, 155, 56, 0.4);
+  color: #FFFFFF;
 }
 
 .monarch-photo-badge span {
   font-family: var(--font-royal);
-  font-size: 0.92rem;
-  letter-spacing: 0.06em;
+  font-size: 0.96rem;
+  letter-spacing: 0.04em;
   color: var(--gold-secondary);
   display: block;
   font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.monarch-photo-badge small {
+  font-size: 0.72rem;
+  color: #D1D5DB;
+  display: block;
+}
+
+/* Right-Side Spotlight Content */
+.monarch-spotlight-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.monarch-spotlight-content .press-tag {
+  align-self: flex-start;
+  margin-bottom: 14px;
 }
 
 .monarch-spotlight-content h3 {
+  font-family: var(--font-royal);
   font-size: 1.85rem;
-  line-height: 1.25;
-  margin-bottom: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--text-primary);
+  margin: 0 0 16px 0;
+  line-height: 1.25;
+}
+
+body.dark-mode .monarch-spotlight-content h3 {
+  color: #FFFFFF;
 }
 
 .monarch-spotlight-content p {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: 16px;
+}
+
+body.dark-mode .monarch-spotlight-content p {
+  color: #9CA3AF;
+}
+
+.monarch-spotlight-content .official-decree-quote {
+  background: transparent;
+  border-left: 3px solid var(--gold-primary);
+  padding: 4px 0 4px 18px;
+  margin: 16px 0 18px 0;
+  font-family: var(--font-royal);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  border-radius: 0;
+}
+
+body.dark-mode .monarch-spotlight-content .official-decree-quote {
+  background: transparent;
+  color: #E5E7EB;
+}
+
+.monarch-spotlight-content .monarch-spotlight-footnote {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
   .monarch-spotlight-wrapper {
     grid-template-columns: 1fr;
-    text-align: center;
+    padding: 32px 24px;
+    gap: 32px;
   }
+
   .monarch-photo-frame {
-    max-width: 320px;
+    max-width: 300px;
     margin: 0 auto;
   }
 }
+
 
 
 .bio-stats-row {
@@ -1386,54 +1586,360 @@ body.theme-navy .emblem-preview-box img {
   color: var(--text-muted);
 }
 
-/* Responsive */
+/* ==========================================================================
+   PARALLEL / PARALLAX SCROLLING LAYERS
+   ========================================================================== */
+.parallax-wrapper {
+  position: relative;
+  overflow-x: clip;
+}
+
+
+.parallax-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.35;
+  transition: transform 0.1s cubic-bezier(0.1, 0.4, 0.4, 1);
+  will-change: transform;
+}
+
+.parallax-shape-1 {
+  top: 10%;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(200, 155, 56, 0.25) 0%, transparent 70%);
+}
+
+.parallax-shape-2 {
+  top: 45%;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(200, 155, 56, 0.2) 0%, transparent 70%);
+}
+
+.parallax-shape-3 {
+  bottom: 15%;
+  left: 5%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(200, 155, 56, 0.18) 0%, transparent 70%);
+}
+
+body.dark-mode .parallax-shape {
+  opacity: 0.22;
+}
+
+/* ==========================================================================
+   MOBILE MENU DRAWER & RESPONSIVE SYSTEM
+   ========================================================================== */
+.mobile-nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 340px;
+  height: 100vh;
+  background: var(--bg-card);
+  border-left: 1px solid var(--bg-subtle-border);
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.25);
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
+
+.mobile-nav-drawer.active {
+  right: 0;
+}
+
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--bg-subtle-border);
+  margin-bottom: 28px;
+}
+
+.drawer-close-btn {
+  background: var(--bg-secondary);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.drawer-close-btn:hover {
+  background: var(--gold-primary);
+  color: #FFFFFF;
+}
+
+.drawer-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.drawer-menu a {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.drawer-menu a:hover {
+  color: var(--gold-primary);
+  transform: translateX(6px);
+}
+
+.drawer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES FOR COMPREHENSIVE RESPONSIVENESS
+   ========================================================================== */
 @media (max-width: 992px) {
-  .emblem-split-grid,
   .news-grid {
     grid-template-columns: 1fr;
   }
   
   .hero-title {
-    font-size: 2.3rem;
+    font-size: 2.2rem;
   }
   
   .hero-regnal-name {
-    font-size: 2.6rem;
+    font-size: 2.45rem;
+  }
+
+  .monarch-spotlight-wrapper {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 28px 20px;
+  }
+
+  .monarch-photo-frame {
+    max-width: 290px;
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .royal-header {
+    height: 72px;
+  }
+
+  .nav-container {
+    height: 72px;
+  }
+
   .nav-menu {
     display: none;
   }
   
   .mobile-toggle {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .mobile-toggle span {
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+  }
+
+  .brand-text h1 {
+    font-size: 0.95rem;
+  }
+
+  .brand-text span {
+    font-size: 0.65rem;
+  }
+
+  .brand-crest {
+    width: 40px;
+    height: 40px;
   }
 
   .hero-section {
-    padding: 50px 0 70px;
+    padding: 40px 0 60px;
+  }
+
+  .hero-proclamation-tag {
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+
+  .hero-crest-container {
+    width: 260px;
+    margin-bottom: 24px;
   }
 
   .hero-title {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
+    line-height: 1.22;
   }
 
   .hero-regnal-name {
-    font-size: 2.15rem;
+    font-size: 1.95rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-blurb {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn-royal-primary,
+  .btn-royal-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+
+  .bio-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .bio-stat-card {
+    padding: 16px 12px;
+  }
+
+  .bio-stat-number {
+    font-size: 1.65rem;
+  }
+
+  .bio-stat-label {
+    font-size: 0.72rem;
+  }
+
+  .bio-grid,
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .bio-card,
+  .pillar-card {
+    padding: 24px 20px;
+  }
+
+  .monarch-spotlight-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .monarch-photo-frame img {
+    height: auto;
+  }
+
+
+  .press-featured-card {
+    padding: 24px 18px;
+  }
+
+  .press-featured-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .media-kit-card {
+    padding: 24px 18px;
   }
 
   .royal-floating-stamp {
-    bottom: 20px;
-    right: 20px;
+    bottom: 16px;
+    right: 16px;
   }
 
   .stamp-badge {
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
+    padding: 8px;
+  }
+
+  .stamp-progress-svg {
+    width: 74px;
+    height: 74px;
+    top: -3px;
+    left: -3px;
   }
 
   .stamp-tooltip {
     display: none;
   }
+
+  .royal-modal-card {
+    padding: 30px 20px;
+  }
 }
+
