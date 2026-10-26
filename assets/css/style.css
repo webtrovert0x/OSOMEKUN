@@ -1742,8 +1742,10 @@ body.dark-mode .parallax-shape {
    MEDIA QUERIES FOR COMPREHENSIVE RESPONSIVENESS
    ========================================================================== */
 @media (max-width: 992px) {
+  .emblem-split-grid,
   .news-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
   
   .hero-title {
@@ -1757,7 +1759,8 @@ body.dark-mode .parallax-shape {
   .monarch-spotlight-wrapper {
     grid-template-columns: 1fr;
     text-align: center;
-    padding: 28px 20px;
+    padding: 32px 24px;
+    gap: 32px;
   }
 
   .monarch-photo-frame {
@@ -1769,18 +1772,104 @@ body.dark-mode .parallax-shape {
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   .container {
     padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
+  /* Responsive Header Navbar */
   .royal-header {
-    height: 72px;
+    height: 70px;
   }
 
   .nav-container {
-    height: 72px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .brand-crest {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .brand-text h1 {
+    font-size: 0.92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .brand-text span {
+    font-size: 0.65rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.25;
+    color: var(--text-gold);
+    display: block;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Compact icon-only Theme Toggle on Mobile */
+  .theme-switch-btn {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-switch-btn span:last-child {
+    display: none;
+  }
+
+  .theme-switch-btn span:first-child {
+    font-size: 1.15rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide duplicate header decree button on mobile (available in Hero CTA & Drawer) */
+  .royal-header .btn-royal-sm {
+    display: none;
   }
 
   .nav-menu {
@@ -1791,64 +1880,61 @@ body.dark-mode .parallax-shape {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 4px;
     background: transparent;
-    border: none;
+    border: 1px solid var(--bg-subtle-border);
+    border-radius: 8px;
     cursor: pointer;
-    padding: 6px;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    flex-shrink: 0;
   }
 
   .mobile-toggle span {
-    width: 22px;
+    width: 20px;
     height: 2px;
     background: var(--text-primary);
     border-radius: 2px;
     transition: var(--transition-smooth);
   }
 
-  .brand-text h1 {
-    font-size: 0.95rem;
-  }
-
-  .brand-text span {
-    font-size: 0.65rem;
-  }
-
-  .brand-crest {
-    width: 40px;
-    height: 40px;
-  }
-
+  /* Hero Section Mobile */
   .hero-section {
-    padding: 40px 0 60px;
+    padding: 36px 0 54px;
   }
 
   .hero-proclamation-tag {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     padding: 5px 12px;
     margin-bottom: 20px;
+    max-width: 90vw;
+    text-align: center;
   }
 
   .hero-crest-container {
-    width: 260px;
-    margin-bottom: 24px;
+    width: 220px;
+    max-width: 65vw;
+    margin-bottom: 20px;
   }
 
   .hero-title {
-    font-size: 1.7rem;
-    line-height: 1.22;
+    font-size: 1.65rem;
+    line-height: 1.25;
   }
 
   .hero-regnal-name {
-    font-size: 1.95rem;
+    font-size: 1.85rem;
   }
 
   .hero-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
+    line-height: 1.4;
   }
 
   .hero-blurb {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.65;
     margin-bottom: 24px;
   }
@@ -1863,73 +1949,127 @@ body.dark-mode .parallax-shape {
   .btn-royal-outline {
     width: 100%;
     justify-content: center;
-    padding: 12px 20px;
-    font-size: 0.85rem;
+    padding: 13px 20px;
+    font-size: 0.88rem;
   }
 
-  .bio-stats-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .bio-stat-card {
-    padding: 16px 12px;
-  }
-
-  .bio-stat-number {
-    font-size: 1.65rem;
-  }
-
-  .bio-stat-label {
+  /* Section Typography */
+  .section-tag {
     font-size: 0.72rem;
   }
 
+  .section-title {
+    font-size: 1.65rem;
+    line-height: 1.25;
+  }
+
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* Sacred Stool Section Mobile Grid */
+  .emblem-split-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .press-featured-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-md);
+  }
+
+  .press-featured-card h3 {
+    font-size: 1.35rem;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .press-featured-card p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .official-decree-quote {
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 16px 0;
+  }
+
+  /* Monarch Spotlight Mobile */
+  .monarch-spotlight-wrapper {
+    grid-template-columns: 1fr;
+    padding: 24px 18px;
+    gap: 24px;
+    border-radius: 18px;
+  }
+
+  .monarch-photo-frame {
+    max-width: 270px;
+    margin: 0 auto;
+  }
+
+  .monarch-spotlight-content h3 {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .monarch-spotlight-content p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* Stats Row */
+  .bio-stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .bio-stat-card {
+    padding: 16px 10px;
+  }
+
+  .bio-stat-number {
+    font-size: 1.55rem;
+  }
+
+  .bio-stat-label {
+    font-size: 0.7rem;
+  }
+
+  /* Other Grids Mobile */
   .bio-grid,
-  .pillars-grid {
+  .pillars-grid,
+  .news-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .bio-card,
-  .pillar-card {
-    padding: 24px 20px;
-  }
-
-  .monarch-spotlight-content h3 {
-    font-size: 1.4rem;
-  }
-
-  .monarch-photo-frame img {
-    height: auto;
-  }
-
-
-  .press-featured-card {
-    padding: 24px 18px;
-  }
-
-  .press-featured-card h3 {
-    font-size: 1.3rem;
-  }
-
+  .pillar-card,
   .media-kit-card {
     padding: 24px 18px;
   }
 
+  /* Floating Stamp & Modals Mobile */
   .royal-floating-stamp {
     bottom: 16px;
     right: 16px;
   }
 
   .stamp-badge {
-    width: 68px;
-    height: 68px;
+    width: 66px;
+    height: 66px;
     padding: 8px;
   }
 
   .stamp-progress-svg {
-    width: 74px;
-    height: 74px;
+    width: 72px;
+    height: 72px;
     top: -3px;
     left: -3px;
   }
@@ -1939,7 +2079,8 @@ body.dark-mode .parallax-shape {
   }
 
   .royal-modal-card {
-    padding: 30px 20px;
+    padding: 28px 18px;
+    max-width: 95vw;
   }
 }
 
